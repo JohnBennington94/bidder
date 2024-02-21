@@ -24,7 +24,8 @@ jobs:
       - name: Run pytest with coverage 🧪
         run: |
           coverage run -m pytest
-          coverage report -m --omit='*/bidder/migrations/*' > coverage.txt
+          coverage report -m --omit=*/bidder/migrations/* > coverage.txt
+        shell: bash
 
       - name: Check coverage percentage 😵‍💫
         id: check_coverage
@@ -39,6 +40,7 @@ jobs:
             echo "No coverage report found."
             exit 1
           fi
+        shell: bash
 
       - name: Run pylint 🔎
         run: |
