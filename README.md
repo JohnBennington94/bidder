@@ -1,4 +1,4 @@
-todo badges
+[![CI Merge Main](https://github.com/JohnBennington94/bidder/actions/workflows/ci_merge_main.yml/badge.svg)](https://github.com/JohnBennington94/bidder/actions/workflows/ci_merge_main.yml)
 
 # Bidder 🚀
 

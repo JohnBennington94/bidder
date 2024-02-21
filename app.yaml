@@ -30,7 +30,6 @@ automatic_scaling:
   target_cpu_utilization: 0.8
   min_pending_latency: automatic
   max_pending_latency: automatic
-  max_num_versions: 2
 
 handlers:
 # This configures Google App Engine to serve the files in the app's static
