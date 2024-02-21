@@ -10,5 +10,6 @@ google-cloud-secret-manager
 django-storages[google]
 
 # Test dependencies
+pylint
 pytest
 pytest-django
