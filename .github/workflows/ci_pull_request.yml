@@ -21,10 +21,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run pytest 🧪
+      - name: Run pytest with coverage 🧪
         run: |
-          pytest
+          coverage run -m pytest
+          coverage report -m
 
       - name: Run pylint 🔎
         run: |
-          pylint *.py
+          find . -name "*.py" | xargs pylint
