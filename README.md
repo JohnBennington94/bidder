@@ -1,3 +1,5 @@
+todo badges
+
 # Bidder 🚀
 
 👋 Welcome to the Bidder application!
