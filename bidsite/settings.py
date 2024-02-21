@@ -40,7 +40,7 @@ elif os.environ.get("GOOGLE_CLOUD_PROJECT", None):
 
     env.read_env(io.StringIO(payload))
 else:
-    raise Exception("No local .env or GOOGLE_CLOUD_PROJECT detected. No secrets found.")
+    logging.log(logging.INFO, "No env file or google env, only suitable for test runs/local running")
 
 # SECURITY WARNING: It's recommended that you use this when
 # running in production. The URL will be known once you first deploy
