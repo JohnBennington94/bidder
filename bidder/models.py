@@ -20,7 +20,7 @@ class Property(models.Model):
         ]
 
     def __str__(self):
-        return self.address
+        return f"{self.address}"
 
 
 class BidUser(AbstractBaseUser, PermissionsMixin):
@@ -37,7 +37,7 @@ class BidUser(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = []
 
     def __str__(self):
-        return self.email
+        return f"{self.email}"
 
 
 class Bid(models.Model):
