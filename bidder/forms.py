@@ -1,3 +1,4 @@
+# pylint: disable=too-many-ancestors
 from django import forms
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm

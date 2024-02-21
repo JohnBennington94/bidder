@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 
-from .services import bid_service, property_service
+from .services import property_service
 from .forms import MyLoginForm
 
 
