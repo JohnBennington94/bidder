@@ -15,7 +15,7 @@
 # [START runtime]
 # [START gaeflex_py_django_app_yaml]
 runtime: python310
-entrypoint: gunicorn -b :$PORT bidsite.wsgi
+entrypoint: gunicorn -b :$PORT bidsite.wsgi --pythonpath bidsite && python manage.py migrate
 
 beta_settings:
   cloud_sql_instances: sinuous-transit-414821:europe-west2:postgres001

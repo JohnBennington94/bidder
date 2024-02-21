@@ -22,3 +22,8 @@ requirements
 media
 .idea
 cloud-sql-proxy
+.pylintrc
+.env
+.env_test
+pytest.ini
+.pytest_cache
