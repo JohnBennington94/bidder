@@ -1,0 +1,9 @@
+[MASTER]
+
+# Add other configurations here if needed
+
+[MESSAGES CONTROL]
+# Ignore specific messages
+disable=missing-class-docstring,missing-module-docstring
+
+# Add other message control configurations here if needed
