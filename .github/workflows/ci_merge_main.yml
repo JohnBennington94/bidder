@@ -48,9 +48,13 @@ jobs:
       - name: Run pylint 🔎
         run: |
           find . -name "*.py" | grep -v "bidder/migrations" | xargs pylint
-          
+
+      - name: Authenticate with Google Cloud ☁️
+        uses: google-github-actions/auth@v2.1.1
+        with:
+          credentials: ${{ secrets.GOOGLE_CLOUD_CREDS }}
+
       - name: Deploy to Google Cloud 🚀
         uses: google-github-actions/deploy-appengine@v2.1.0
         with:
-          credentials: ${{ secrets.GOOGLE_CLOUD_CREDS }}
           project_id: sinuous-transit-414821
