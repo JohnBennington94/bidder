@@ -1,6 +1,6 @@
 import pytest
 
-from ...services.localization_service import *
+from ...services.localization_service import format_number_as_pound_value_commas
 
 
 @pytest.mark.parametrize("test_input, test_output", [

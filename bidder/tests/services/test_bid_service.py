@@ -2,7 +2,7 @@ from unittest.mock import patch
 
 import pytest
 
-from ...services.bid_service import *
+from ...services.bid_service import Property, bid_is_valid
 
 
 @pytest.fixture
@@ -15,7 +15,7 @@ def mock_bid_service():
         yield mock_get_top_bid, mock_get_top_bid_for_user
 
 
-def test_bid_less_than_top_bid_is_not_valid(mock_bid_service):
+def test_bid_less_than_top_bid_is_not_valid():
     mock_get_top_bid, mock_get_top_bid_for_user = mock_bid_service
 
     # Set return values for this specific test
@@ -28,7 +28,7 @@ def test_bid_less_than_top_bid_is_not_valid(mock_bid_service):
     assert err == "Bid does not exceed the current maximum bid"
 
 
-def test_bid_more_than_top_bid_is_valid(mock_bid_service):
+def test_bid_more_than_top_bid_is_valid():
     mock_get_top_bid, mock_get_top_bid_for_user = mock_bid_service
 
     # Set return values for this specific test
@@ -42,7 +42,7 @@ def test_bid_more_than_top_bid_is_valid(mock_bid_service):
     assert err == ""
 
 
-def test_bid_increase_less_than_minimum_increment_is_not_valid(mock_bid_service):
+def test_bid_increase_less_than_minimum_increment_is_not_valid():
     mock_get_top_bid, mock_get_top_bid_for_user = mock_bid_service
 
     # Set return values for this specific test
@@ -55,7 +55,7 @@ def test_bid_increase_less_than_minimum_increment_is_not_valid(mock_bid_service)
     assert err == "Bid does not exceed the minimum increment"
 
 
-def test_bid_increase_equal_to_minimum_increment_is_valid(mock_bid_service):
+def test_bid_increase_equal_to_minimum_increment_is_valid():
     mock_get_top_bid, mock_get_top_bid_for_user = mock_bid_service
 
     # Set return values for this specific test
