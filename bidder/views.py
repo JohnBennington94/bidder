@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 
-from .services import bid_service, property_service
+from .services import property_service
 from .forms import MyLoginForm
 
 
@@ -34,23 +34,21 @@ def detail(request, property_id):
     if property_service.can_view_property(request.user, property_id):
         context = property_service.fetch_property_context(request, property_id, None)
         return render(request, "bidder/detail.html", context)
-    else:
-        return index(request)
+    return index(request)
 
 
 @login_required
 def bid(request, property_id):
     if property_service.can_view_property(request.user, property_id):
-        return bid_service.place_bid(request, property_id)
-    else:
-        return index(request)
+        return property_service.place_bid(request, property_id)
+    return index(request)
 
 
 @login_required
-def help(request):
+def help_view(request):
     return render(request, "bidder/help.html")
 
 
 @login_required
-def user(request):
+def user_details(request):
     return render(request, "bidder/user.html")

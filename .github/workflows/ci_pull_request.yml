@@ -4,7 +4,7 @@ on:
   pull_request:
 
 jobs:
-  build:
+  python-test-lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,10 +21,28 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run pytest 🧪
+      - name: Run pytest with coverage 🧪
         run: |
-          pytest
+          coverage run -m pytest
+          coverage report -m --omit=*/bidder/migrations/* > coverage.txt
+        shell: bash
+
+      - name: Check coverage percentage 😵‍💫
+        id: check_coverage
+        run: |
+          if [[ -f "coverage.txt" ]]; then
+            COVERAGE=$(awk '/^TOTAL/ {print $4}' coverage.txt | tr -d '%')
+            if (( $(echo "$COVERAGE < 80" | bc -l) )); then
+              echo "::error::Coverage is below 80% ($COVERAGE%)"
+              exit 1
+            fi
+            echo "coverage is $COVERAGE %"
+          else
+            echo "No coverage report found."
+            exit 1
+          fi
+        shell: bash
 
       - name: Run pylint 🔎
         run: |
-          pylint *.py
+          find . -name "*.py" | grep -v "bidder/migrations" | xargs pylint

@@ -1,3 +1,4 @@
+# pylint: disable=too-many-ancestors
 from django import forms
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
@@ -9,7 +10,7 @@ from .models import Property
 # Login
 class MyLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
-        super(MyLoginForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.fields['username'].label = 'Email Address'
         self.fields['password'].label = 'Password'
 

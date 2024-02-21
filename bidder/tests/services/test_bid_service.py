@@ -1,8 +1,9 @@
+# pylint: disable=redefined-outer-name
 from unittest.mock import patch
 
 import pytest
 
-from ...services.bid_service import *
+from ...services.bid_service import Property, bid_is_valid
 
 
 @pytest.fixture

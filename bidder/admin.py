@@ -1,3 +1,5 @@
+"""Module for the django administration of general"""
+
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth import get_user_model
@@ -20,7 +22,10 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('first_name', 'surname', 'email', 'password1', 'password2', 'is_staff', 'is_active', 'viewable_properties')}
+            'fields': ('first_name', 'surname', 'email', 'password1', 'password2',
+                       'is_staff', 'is_active', 'viewable_properties'
+            )
+        }
         ),
     )
     search_fields = ('first_name', 'surname', 'email',)

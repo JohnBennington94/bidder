@@ -9,13 +9,12 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+import os
 import io
 import logging
 from pathlib import Path
-from urllib.parse import urlparse
 
 import environ
-import os
 from google.cloud import secretmanager
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -40,7 +39,9 @@ elif os.environ.get("GOOGLE_CLOUD_PROJECT", None):
 
     env.read_env(io.StringIO(payload))
 else:
-    raise Exception("No local .env or GOOGLE_CLOUD_PROJECT detected. No secrets found.")
+    env_file = os.path.join(BASE_DIR, ".env_test")
+    env.read_env(env_file)
+    logging.log(logging.INFO, "No env file or google env, only suitable for test runs/local running")
 
 # SECURITY WARNING: It's recommended that you use this when
 # running in production. The URL will be known once you first deploy

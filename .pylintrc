@@ -1,0 +1,9 @@
+[MASTER]
+# Add other configurations here if needed
+max-line-length = 120
+
+[MESSAGES CONTROL]
+# Ignore specific messages
+disable=missing-class-docstring,missing-module-docstring,too-few-public-methods,missing-function-docstring,no-member
+
+# Add other message control configurations here if needed
