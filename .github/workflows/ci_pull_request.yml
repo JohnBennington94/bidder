@@ -31,7 +31,8 @@ jobs:
         id: check_coverage
         run: |
           if [[ -f "coverage.txt" ]]; then
-            COVERAGE=$(awk '/^TOTAL/ {print $4}' coverage.txt)
+            cat coverage.txt
+            COVERAGE=$(awk '/^TOTAL/ {print $4}' coverage.txt | tr -d '%')
             if (( $(echo "$COVERAGE < 80" | bc -l) )); then
               echo "::error::Coverage is below 80% ($COVERAGE%)"
               exit 1
