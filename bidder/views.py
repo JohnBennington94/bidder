@@ -40,7 +40,7 @@ def detail(request, property_id):
 @login_required
 def bid(request, property_id):
     if property_service.can_view_property(request.user, property_id):
-        return bid_service.place_bid(request, property_id)
+        return property_service.place_bid(request, property_id)
     return index(request)
 
 

@@ -1,8 +1,33 @@
 from django.db.models import Q
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 from . import bid_service, localization_service
-from ..models import Property
+from ..models import Property, Bid
+
+
+def place_bid(request, property_id: int):
+    prop = get_object_or_404(Property, pk=property_id)  # Retrieve the property instance
+    try:
+        bid_value = int(request.POST['bid'])
+        valid, err = bid_service.bid_is_valid(prop, bid_value)
+        if valid:
+            bid_instance = Bid(property=prop, bid=bid_value, user=request.user)
+            bid_instance.save()
+            return HttpResponseRedirect(reverse('bidder:detail', args=(prop.id,)))
+
+        context = fetch_property_context(
+            request, property_id, err
+        )
+        context["input_bid"] = bid_value
+        return render(request, 'bidder/detail.html', context)
+    except (KeyError, ValueError):
+        # Return the form with an error message if something goes wrong (e.g., bid is not a number)
+        context = fetch_property_context(
+            request, property_id, "Invalid bid. Please enter a valid number"
+        )
+        return render(request, 'bidder/detail.html', context)
 
 
 def fetch_property_list_context(request):
