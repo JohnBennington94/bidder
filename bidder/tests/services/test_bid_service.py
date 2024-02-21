@@ -1,3 +1,4 @@
+# pylint: disable=redefined-outer-name
 from unittest.mock import patch
 
 import pytest
@@ -15,7 +16,7 @@ def mock_bid_service():
         yield mock_get_top_bid, mock_get_top_bid_for_user
 
 
-def test_bid_less_than_top_bid_is_not_valid():
+def test_bid_less_than_top_bid_is_not_valid(mock_bid_service):
     mock_get_top_bid, mock_get_top_bid_for_user = mock_bid_service
 
     # Set return values for this specific test
@@ -28,7 +29,7 @@ def test_bid_less_than_top_bid_is_not_valid():
     assert err == "Bid does not exceed the current maximum bid"
 
 
-def test_bid_more_than_top_bid_is_valid():
+def test_bid_more_than_top_bid_is_valid(mock_bid_service):
     mock_get_top_bid, mock_get_top_bid_for_user = mock_bid_service
 
     # Set return values for this specific test
@@ -42,7 +43,7 @@ def test_bid_more_than_top_bid_is_valid():
     assert err == ""
 
 
-def test_bid_increase_less_than_minimum_increment_is_not_valid():
+def test_bid_increase_less_than_minimum_increment_is_not_valid(mock_bid_service):
     mock_get_top_bid, mock_get_top_bid_for_user = mock_bid_service
 
     # Set return values for this specific test
@@ -55,7 +56,7 @@ def test_bid_increase_less_than_minimum_increment_is_not_valid():
     assert err == "Bid does not exceed the minimum increment"
 
 
-def test_bid_increase_equal_to_minimum_increment_is_valid():
+def test_bid_increase_equal_to_minimum_increment_is_valid(mock_bid_service):
     mock_get_top_bid, mock_get_top_bid_for_user = mock_bid_service
 
     # Set return values for this specific test
