@@ -41,6 +41,7 @@ elif os.environ.get("GOOGLE_CLOUD_PROJECT", None):
     env.read_env(io.StringIO(payload))
 else:
     env_file = os.path.join(BASE_DIR, ".env_test")
+    env.read_env(env_file)
     logging.log(logging.INFO, "No env file or google env, only suitable for test runs/local running")
 
 # SECURITY WARNING: It's recommended that you use this when
