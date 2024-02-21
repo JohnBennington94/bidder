@@ -1,7 +1,6 @@
 [MASTER]
 # Add other configurations here if needed
 max-line-length = 120
-ignore = bidder/migrations
 
 [MESSAGES CONTROL]
 # Ignore specific messages

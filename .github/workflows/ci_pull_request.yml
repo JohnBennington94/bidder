@@ -24,7 +24,7 @@ jobs:
       - name: Run pytest with coverage 🧪
         run: |
           coverage run -m pytest
-          coverage report -m > coverage.txt || true  # Ensure the step always succeeds
+          coverage report -m > coverage.txt
 
       - name: Check coverage percentage 😵‍💫
         id: check_coverage
@@ -32,7 +32,8 @@ jobs:
           if [[ -f "coverage.txt" ]]; then
             COVERAGE=$(grep -oP '^TOTAL\s+\K(\d+(?:\.\d+)?)' coverage.txt)
             if (( $(echo "$COVERAGE < 80" | bc -l) )); then
-              echo "::set-output name=coverage_failed::true"
+              echo "::error::Coverage is below 80% ($COVERAGE%)"
+              exit 1
             fi
           else
             echo "No coverage report found."
@@ -40,4 +41,4 @@ jobs:
 
       - name: Run pylint 🔎
         run: |
-          find . -name "*.py" | xargs pylint || true  # Ensure the step always succeeds
+          find . -name "*.py" | grep -v "bidder/migrations" | xargs pylint
