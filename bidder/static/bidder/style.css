@@ -1,0 +1,341 @@
+/* COMMON */
+:root {
+    --primary-color: #DCDCDC;
+    --secondary-color: #142F5B;
+    --light-color: #fff;
+}
+
+/* BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    padding: 1rem;
+}
+
+.nav-links li {
+    display: inline;
+    margin-left: 10px;
+}
+
+.nav-links a {
+    color: var(--light-color);
+    text-decoration: none;
+}
+
+.hero {
+    background-color: var(--primary-color);
+    padding: 2rem;
+    text-align: center;
+}
+
+.hero-content h1 {
+    margin-bottom: 1rem;
+}
+
+.cta {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center; /* Ensures vertical alignment is centered */
+    justify-content: flex-start; /* Aligns items to the start of the container */
+}
+
+.logo-image {
+    width: 55px; /* Adjust as needed */
+    height: 50px; /* Adjust as needed */
+    margin-right: 10px; /* Adds space between the image and the text */
+}
+
+.logo-text {
+    color: #fff;
+    font-size: 24px; /* Large font size, adjust as needed */
+    font-weight: bold; /* Makes the text bold */
+}
+
+.logo-container:hover,
+.logo-container:visited,
+.logo-container:link,
+.logo-container:active {
+    text-decoration: none; /* Removes underline on various link states */
+    color: inherit; /* Keeps the text color consistent */
+}
+
+.nav-icon {
+    width: 30px; /* Or the size you prefer */
+    height: 30px; /* Or the size you prefer */
+    vertical-align: middle; /* Aligns the icon vertically with adjacent text */
+}
+
+.large-font {
+    color: var(--secondary-color);
+    font-size: 24px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+/* INDEX PAGE */
+/* Search bar container */
+.search-container {
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    text-align: center; /* Center the search form */
+}
+
+.search-bar {
+    width: 60%;
+    padding: 10px;
+    margin-right: 5px; /* Space between the input field and button */
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .search-bar {
+        width: 60%; /* Smaller width on mobile for better fit */
+    }
+
+    .search-button {
+        width: auto;
+        padding: 10px; /* Adjust padding as needed */
+    }
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 1rem;
+}
+
+.property-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: white;
+}
+
+.property-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.property-image-card {
+    /* Set a fixed height for your images */
+    height: 250px; /* Adjust the height as needed */
+    overflow: hidden; /* Ensures the image is clipped to the container */
+}
+
+.property-image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the container area, crop the image if necessary */
+    display: block;
+}
+
+.property-address {
+    padding: 10px;
+    background: var(--secondary-color);
+    text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* LOGIN */
+.login-form-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows for responsive stacking on smaller screens */
+    gap: 20px;
+}
+
+.small-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
+
+/* Styles for form fields */
+.small-form p {
+    margin-bottom: 1rem;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="submit"],
+input[type="button"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Styling the submit button */
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--secondary-color);
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+fieldset {
+    border: none; /* Removes the border */
+    padding: 0; /* You may also want to remove padding if desired */
+    margin: 0; /* Adjust margin if needed */
+}
+
+/* DETAILS */
+.content-container {
+    display: flex; /* Use flex display */
+    flex-direction: row; /* Arrange children in a row */
+    justify-content: center; /* Center the items on the main axis */
+    gap: 20px; /* Space between the image and the form */
+    padding: 20px; /* Padding around the content container */
+    max-width: 1200px; /* Maximum width of the container */
+    margin: auto; /* Center the container in the viewport */
+    align-items: center;
+}
+
+.property-image-container {
+    flex: 1; /* Allow the image container to grow */
+    max-width: 50%; /* Maximum width of the image container */
+}
+
+.form-container {
+    flex: 1; /* Allow the form container to grow */
+    max-width: 50%; /* Maximum width of the form container */
+}
+
+@media (max-width: 768px) {
+    .content-container {
+        flex-direction: column; /* Stack the flex items vertically */
+        align-items: stretch; /* Stretch the items to match the container's width */
+        padding: 10px; /* Adjust padding for smaller screens if needed */
+        max-width: none; /* Remove max-width restriction on smaller screens */
+    }
+
+    .property-image-container,
+    .form-container {
+        max-width: 100%; /* Allow each container to take the full width */
+        flex: none; /* Remove the flex grow/shrink settings */
+    }
+}
+
+/* Make sure the form itself is not too wide within the form container */
+.bid-form {
+    width: 100%; /* Full width of the form container */
+    max-width: 500px; /* Maximum width of the form */
+}
+
+.bid-input {
+    width: calc(100% - 20px); /* Adjust width as necessary */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* DETAILS - TABLE */
+.table-container {
+    flex-direction: row; /* Arrange children in a row */
+    justify-content: center; /* Center the items on the main axis */
+    gap: 20px; /* Space between the image and the form */
+    padding: 20px; /* Padding around the content container */
+    max-width: 1200px; /* Maximum width of the container */
+    margin: auto; /* Center the container in the viewport */
+    align-items: center;
+}
+
+
+.table-container h3 {
+    text-align: left;
+    margin-bottom: 20px; /* Adds space between the heading and the table */
+}
+
+.table-container table {
+    width: 100%; /* Makes the table use the full width of its container */
+    border-collapse: collapse; /* Collapses border to avoid double borders */
+    margin-top: 20px; /* Adds some space above the table */
+}
+
+.table-container th, .table-container td {
+    border: 1px solid #ccc; /* Adds a light border to table headers and cells */
+    text-align: left; /* Aligns text to the left */
+    padding: 8px; /* Adds padding inside table cells */
+}
+
+.table-container th {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.table-container tr {
+    background-color: var(--light-color);
+}
+
+/* ERRORS */
+.error {
+    color: red;
+    font-weight: bold;
+}

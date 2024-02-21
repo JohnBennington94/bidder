@@ -1,0 +1,61 @@
+{% extends "bidder/base.html" %}
+
+{% block content %}
+<div class="content-container">
+    <div class="property-image-container">
+        <div class="property-image">
+            <img src="{{ property.image.url }}" alt="{{ property.address }} image">
+        </div>
+    </div>
+    <div class="form-container">
+        <h3>{{ property.address }}</h3>
+        <a href="{{ property.link }}">Link to Property</a>
+        <p class="text-line">Minimum bid increment: {{ minimum_increment }}</p>
+        <form id="bidForm" action="{% url 'bidder:bid' property.id %}" method="post" class="small-form">
+            {% csrf_token %}
+            <fieldset>
+                <p class="bold text-line">Top bid: {{ top_bid }}</p>
+                <p class="text-line">Your bid: {{ user_bid }}</p>
+                <input class="bid-input" type="text" name="bid" id="bid-value" value=" {{ input_bid }}">
+                <button type="button" class="submit-btn" onclick="confirmSubmission()">Bid</button>
+                {% if error_message %}<p class="error">{{ error_message }}</p>{% endif %}
+            </fieldset>
+        </form>
+    </div>
+</div>
+<div class="table-container">
+    {% if bids_list %}
+    <h3>Previous Bids</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Bid</th>
+                <th>Bidder</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bid in bids_list %}
+            <tr>
+                <td>{{ bid.bid_to_str }}</td>
+                <td>{{ bid.user.first_name }} {{ bid.user.surname }}</td>
+                <td>{{ bid.timestamp }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+
+<script>
+function confirmSubmission() {
+    var confirmAction = confirm("Are you sure you want to submit this bid?");
+    if (confirmAction) {
+        document.getElementById('bidForm').submit(); // Submit the form if confirmed
+    } else {
+        // Do nothing if cancelled
+        console.log("Bid submission cancelled.");
+    }
+}
+</script>
+{% endblock %}

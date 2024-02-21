@@ -1,0 +1,55 @@
+{% load static %}  <!-- This line loads the static file handling tags -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bidder</title>
+    <link rel="stylesheet" href="{% static 'bidder/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'bidder/logo.png' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'bidder/logo.png' %}" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="{% url 'bidder:index' %}" class="logo-container">
+                <img src="{% static 'bidder/logo.png' %}" class="logo-image" alt="logo">
+                <div class="logo-text large-font bold">Bidder</div>
+            </a>
+            <ul class="nav-links">
+                <li>
+                    <a href="{% url 'bidder:index' %}">
+                        <img src="{% static 'bidder/icons/home.svg' %}" alt="Home" class="nav-icon">
+                    </a>
+                </li>
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'bidder:user' %}">
+                        <img src="{% static 'bidder/icons/user.svg' %}" alt="User" class="nav-icon">
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'bidder:help' %}">
+                        <img src="{% static 'bidder/icons/help.svg' %}" alt="Help" class="nav-icon">
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'bidder:logout' %}" method="post" title="Logout">
+                        <img src="{% static 'bidder/icons/logout.svg' %}" alt="Logout" class="nav-icon">
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    {% block content %}
+    <!-- This block will be overridden by child templates -->
+    {% endblock %}
+
+    <footer>
+        <p class="bold">&copy; 2024 Bidder. All rights reserved.</p>
+    </footer>
+</body>
+</html>

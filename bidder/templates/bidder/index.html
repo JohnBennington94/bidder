@@ -1,0 +1,33 @@
+{% extends "bidder/base.html" %}
+
+{% block content %}
+{% if user.is_staff %}
+    <!-- Search bar container -->
+    <div class="search-container">
+        <form action="{% url 'bidder:index' %}" method="get">
+            <div class="search-wrapper">
+                <input type="text" name="query" class="search-bar" placeholder="Search properties..." value="{{ query }}">
+                <button type="submit" class="submit-btn">Search</button>
+            </div>
+        </form>
+    </div>
+{% endif %}
+
+<!-- Grid container for properties -->
+<div class="grid-container">
+    {% if latest_property_list %}
+        {% for property in latest_property_list %}
+            <a href="{% url 'bidder:detail' property.id %}" class="property-card">
+                <div class="property-image-card">
+                    <img src="{{ property.image.url }}" alt="{{ property.address }} image">
+                </div>
+                <div class="property-address">
+                    {{ property.address }}
+                </div>
+            </a>
+        {% endfor %}
+    {% else %}
+        <p>No properties are available.</p>
+    {% endif %}
+</div>
+{% endblock %}

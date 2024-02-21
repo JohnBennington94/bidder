@@ -1,0 +1,48 @@
+# Copyright 2021 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# [START runtime]
+# [START gaeflex_py_django_app_yaml]
+runtime: python310
+entrypoint: gunicorn -b :$PORT bidsite.wsgi
+
+beta_settings:
+  cloud_sql_instances: sinuous-transit-414821:europe-west2:postgres001
+
+runtime_config:
+  python_version: 3
+
+instance_class: F1
+automatic_scaling:
+  min_instances: 0
+  max_instances: 1
+  target_cpu_utilization: 0.8
+  min_pending_latency: automatic
+  max_pending_latency: automatic
+
+handlers:
+# This configures Google App Engine to serve the files in the app's static
+# directory.
+  - url: /static
+    static_dir: bidder/static/
+
+# This handler routes all requests not caught above to your main app. It is
+# required when static routes are defined, but can be omitted (along with
+# the entire handlers section) when there are no static files defined.
+  - url: /.*
+    secure: always
+    redirect_http_response_code: 301
+    script: auto
+# [END gaeflex_py_django_app_yaml]
+# [END runtime]

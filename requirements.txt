@@ -1,0 +1,14 @@
+# App dependencies
+pillow  # image handling
+psycopg2-binary
+Django
+
+# Google cloud
+gunicorn
+django-environ
+google-cloud-secret-manager
+django-storages[google]
+
+# Test dependencies
+pytest
+pytest-django
